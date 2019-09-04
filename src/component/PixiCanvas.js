@@ -1,14 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 import * as PIXI from 'pixi.js';
 import styles from './PixiCanvas.css'
+import { isAbsolute } from 'path';
 
 const PixiCanvas = () => {
     const canvas = useRef();
+    const style = {
+        position: "absolute"
+    };
 
     useEffect(() => {
         const app = new PIXI.Application({
-            width: window.innerWidth,
-            height: window.innerHeight,
+            width: window.innerWidth / 2,
+            height: window.innerHeight / 2,
             transparent: true
         });
         canvas.current.appendChild(app.view)
@@ -35,12 +39,13 @@ const PixiCanvas = () => {
             });
         }
 
+
     })
 
 
     return (
         <>
-            <div ref={canvas} className={styles.pixicanvas}>
+            <div ref={canvas} className={styles.pixicanvas} style={style}>
             </div>
         </>
     );
